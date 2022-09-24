@@ -1,16 +1,25 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <div>
+    <input v-model="username" placeholder="GitHub User" key="username" />
+    <p>{{ username }}</p>
+    <UserRepositories :user="username"></UserRepositories>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import UserRepositories from "@/components/UserRepositories.vue";
+import { ref, defineComponent } from "vue";
 
 export default defineComponent({
   name: "App",
   components: {
-    HelloWorld,
+    UserRepositories,
+  },
+  setup() {
+    const username = ref<string>("");
+    return {
+      username,
+    };
   },
 });
 </script>
